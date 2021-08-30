@@ -72,3 +72,4 @@ mkdir tmp
 cd tmp
 project_name-run
 ```
+# checkers
