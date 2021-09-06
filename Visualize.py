@@ -1,0 +1,4 @@
+
+
+def main():
+    visualize(board)
