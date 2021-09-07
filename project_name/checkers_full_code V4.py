@@ -1,4 +1,5 @@
 #1 USED LIBRARIES
+import streamlit as st
 import numpy as np
 import random
 import math
@@ -879,7 +880,8 @@ def nextState(full_state):  #compute next state IN: list with board np.array, in
     return board
 
 #BASELINE MODEL
-""" baseline model with random function"""
+
+#baseline model with random function
 
 def baseline_game(action_space, state):
     legal_bl = False
@@ -891,21 +893,21 @@ def baseline_game(action_space, state):
         legal_bl = referee(action_space, full_state)
         if legal_bl == True or i > 999:  #delete (i) for real model
             if i < 999:
-                print(f"Last move: {move}")
-                print(f"# iterations: {i} -> True")
+                st.text(f"Last move: {move}")
+                st.text(f"# iterations: {i} -> True")
             elif i > 999:
-                print(f"Last try: {move}")
-                print(f"# iterations: {i} -> False")
+                st.text(f"Last try: {move}")
+                st.text(f"# iterations: {i} -> False")
             break
         else:
             continue
 
     if i > 999:  #to deal with iteration and not make a move if it doesnt hit the right move - usefull for modelling only
-        print(Fore.RED + "No move found & nothing changed! " + Style.RESET_ALL, end='')  #delete for real model
+        st.text("No move found & nothing changed! ")  #delete for real model
         if state[1] > 0:
-            print(Fore.RED + "White plays again!" + Style.RESET_ALL)
+            st.text("White plays again!")
         else:
-            print(Fore.RED + "Black plays again!" + Style.RESET_ALL)
+            st.text("Black plays again!")
         board = state[0]  #delete for real model
         if state[1] > 0:
             agent = 1
@@ -943,7 +945,8 @@ def visualize(state,counter):  #state: list (board: np.array, agent: int +1 or -
         finished_board.append(row)
     ary = np.array(finished_board)
     brd = checkerboard_plot(ary, fmt='%d', figsize=(5, 5), fontsize=15)
-    plt.show()
+    st.pyplot(brd)
+
 
 def winner(state):#winner calculation and display
     sum_points = np.sum(state[0])  # -> sum of board
@@ -952,31 +955,38 @@ def winner(state):#winner calculation and display
     elif sum_points < 0:
         win_color = "=> Game over! The winner is Black :)"
     else:
-        win_color = => "Game over! No winner this time! :("
+        win_color = "=> Game over! No winner this time! :("
     return win_color
 
 #GAME SCRIPT
 
 def game(action_space, state, counter): #executes the game logic for a max of 25 plays
-    print("Initial Board - Turn: White")
+    st.write("Initial Board - Turn: White")
     visualize(state, counter)  #initial visualization
     t = 0
-    for t in range(25):  # -> 25 plays
-        play_next = input(Fore.WHITE + Back.GREEN + 'Press to play ' + Style.RESET_ALL)
-        print()
+    for t in range(5):  # -> 25 plays
         if state[1] > 0:  #it provides the player for the active move
             player = 'White'
             next_player = 'Black'
-            print(f"Play: {counter } / Played by: {player} / Next player: {next_player}")  #display active play
+            st.write(f"Play: {counter } / Played by: {player} / Next player: {next_player}")  #display active play
         else:
             player = 'Black'
             next_player = 'White'
-            print(f"Play: {counter} / Played by: {player} / Next player: {next_player}")  #display active play
+            st.write(f"Play: {counter} / Played by: {player} / Next player: {next_player}")  #display active play
         counter = t + 2
         state = baseline_game(action_space, state)  #[board,agent] #state = list [board = np.array, agent = integer]
         visualize(state, counter)
-    print()
-    print(winner(state))
+    st.write()
+    st.markdown(winner(state))
+    st.balloons()
 
 #GAME EXECUTION
-game(action_space, state, counter)
+'''
+# AI Checkers Quest :sunglasses:
+
+
+'''
+st.write('An attempt of using Simple Reinforcement Q-learning for training AI to play italian checkers')
+st.write()
+if st.button('Press to continue'):
+    game(action_space, state, counter)
