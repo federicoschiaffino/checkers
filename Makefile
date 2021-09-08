@@ -53,3 +53,10 @@ pypi_test:
 
 pypi:
 	@twine upload dist/* -u $(PYPI_USERNAME)
+
+
+#----------------------------------
+#             Streamlit
+#----------------------------------
+run_streamlit:
+    streamlit run project_name/checkers_full_code_streamlit_test.py
