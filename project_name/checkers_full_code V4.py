@@ -6,6 +6,10 @@ import math
 import matplotlib.pyplot as plt
 from mlxtend.plotting import checkerboard_plot
 from colorama import Fore, Back, Style
+from PIL import Image
+from time import sleep
+
+
 
 #2 INPUT
 
@@ -893,21 +897,19 @@ def baseline_game(action_space, state):
         legal_bl = referee(action_space, full_state)
         if legal_bl == True or i > 999:  #delete (i) for real model
             if i < 999:
-                st.text(f"Last move: {move}")
-                st.text(f"# iterations: {i} -> True")
+                st.write(f"Last move {move}   :hash: iterations: {i}  :call_me_hand: ") #true
             elif i > 999:
-                st.text(f"Last try: {move}")
-                st.text(f"# iterations: {i} -> False")
+                st.write(f"Last try {move}   :hash: iterations: {i}  :no_entry_sign: ") #false
             break
         else:
             continue
 
     if i > 999:  #to deal with iteration and not make a move if it doesnt hit the right move - usefull for modelling only
-        st.text("No move found & nothing changed! ")  #delete for real model
+        st.write(":red_circle: No move found & nothing changed! ")  #delete for real model
         if state[1] > 0:
-            st.text("White plays again!")
+            st.write(":recycle: :white_large_square: plays again!")
         else:
-            st.text("Black plays again!")
+            st.write(":recycle: :black_large_square: plays again!")
         board = state[0]  #delete for real model
         if state[1] > 0:
             agent = 1
@@ -944,49 +946,50 @@ def visualize(state,counter):  #state: list (board: np.array, agent: int +1 or -
                 row.append(0)
         finished_board.append(row)
     ary = np.array(finished_board)
-    brd = checkerboard_plot(ary, fmt='%d', figsize=(5, 5), fontsize=15)
+    brd = checkerboard_plot(ary, fmt='%d', figsize=(4, 4), fontsize=12)
     st.pyplot(brd)
 
 
 def winner(state):#winner calculation and display
     sum_points = np.sum(state[0])  # -> sum of board
     if sum_points > 0:
-        win_color = "=> Game over! The winner is White :)"
+        win_color = ":shamrock: Game over! The winner is :white_large_square: :grinning:"
     elif sum_points < 0:
-        win_color = "=> Game over! The winner is Black :)"
+        win_color = ":shamrock: Game over! The winner is :black_large_square: :grinning:"
     else:
-        win_color = "=> Game over! No winner this time! :("
+        win_color = ":negative_squared_cross_mark: Game over! No winner this time! :unamused:"
     return win_color
 
 #GAME SCRIPT
 
 def game(action_space, state, counter): #executes the game logic for a max of 25 plays
-    st.write("Initial Board - Turn: White")
+    st.write(":arrow_forward: Starting Board :arrow_lower_right: Turn :white_large_square:")
     visualize(state, counter)  #initial visualization
     t = 0
-    for t in range(5):  # -> 25 plays
+    for t in range(25):  # -> 25 plays
         if state[1] > 0:  #it provides the player for the active move
-            player = 'White'
-            next_player = 'Black'
-            st.write(f"Play: {counter } / Played by: {player} / Next player: {next_player}")  #display active play
+            player = ':white_large_square:'
+            next_player = ':black_large_square:'
+            st.write(f":hash: {counter} :arrow_lower_right: Played by {player}   Next player {next_player}")  #display active play
         else:
-            player = 'Black'
-            next_player = 'White'
-            st.write(f"Play: {counter} / Played by: {player} / Next player: {next_player}")  #display active play
+            player = ':black_large_square:'
+            next_player = ':white_large_square:'
+            st.write(
+                f":hash: {counter} :arrow_lower_right: Played by {player}   Next player {next_player}"
+            )  #display active play
         counter = t + 2
         state = baseline_game(action_space, state)  #[board,agent] #state = list [board = np.array, agent = integer]
         visualize(state, counter)
-    st.write()
-    st.markdown(winner(state))
-    st.balloons()
+    st.write(f"{winner(state)}")
 
 #GAME EXECUTION
 '''
-# AI Checkers Quest :sunglasses:
+# AI Checkers Quest :rocket:
 
 
 '''
-st.write('An attempt of using Simple Reinforcement Q-learning for training AI to play italian checkers')
+st.write('Simple Reinforcement Q-learning model to train AI play :it: italian checkers')
 st.write()
-if st.button('Press to continue'):
+if st.button('Play'):
+    st.balloons()
     game(action_space, state, counter)
