@@ -1666,14 +1666,14 @@ def game(action_space, state, counter): #executes the game logic for a max of 25
 
 #GAME EXECUTION
 '''
-# Luigi checkers quest :rocket:
+# Luigi :rocket: :white_large_square: against :monkey: :black_large_square:
 
 
 '''
 st.write('Simple Reinforcement Q-learning model to train LUIGI play :it: italian checkers')
 st.write('Legend:')
-st.write(':white_large_square: 1  :crown: +2')
-st.write(':black_large_square: -1  :crown: -2')
+st.write(':rocket: :white_large_square: 1  :crown: +2 - Luigi')
+st.write(':monkey: :black_large_square: -1  :crown: -2 - Random Model')
 
 if st.button('Play'):
     st.balloons()
