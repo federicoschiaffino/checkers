@@ -1,75 +1,25 @@
-# Data analysis
-- Document here the project: project_name
-- Description: Project Description
-- Data Source:
-- Type of analysis:
+# Checkers 
 
-Please document the project the better you can.
+Checker (or Draughts) is a two players board game played worldwide. Usually played on the same board as chess, the objective of each player is to capture, i.e. eat, each opponent's piece. Initially, each player has 12 pawns that can only move forward and diagonally - the game is played only on one colour of the board, typically on the black squares - and can eat by jumping over the opponent's piece. Once a pawn reaches the last row of the board this is promoted into a Queen (or King), a more powerful that piece that can also move backwards. 
 
-# Startup the project
+# Checkers and AI
+Unlike chess, checker is played differently around the world depending on each region. In the US and UK the prevalent version is the English variant. Other popular variants are the International, played mostly in Northern Europe, and the Italian variant played in Italy and Northern Africa. 
 
-The initial setup.
+## Chinook 
+In 1994, a computer program named Chinook was the first ever artificial system able to win a world champion title in a competition against humans. The AI played the English Checker variant and ever since this version has become the most trending in the research involving computer science and checkers. In 2007, English Checkers was weakly solved and to this day it remains the most complex game ever solved. 
 
-Create virtualenv and install the project:
-```bash
-sudo apt-get install virtualenv python-pip python-dev
-deactivate; virtualenv ~/venv ; source ~/venv/bin/activate ;\
-    pip install pip -U; pip install -r requirements.txt
-```
+## Italian Variant
+The Italian checkers variant is very similar to the English one, with the main differences laying in the eating priorities and the rule 
 
-Unittest test:
-```bash
-make clean install test
-```
+Eldo is a Deep Reinforcement Leaning system able to play Italian Checkers at super human level. 
 
-Check for project_name in gitlab.com/{group}.
-If your project is not set please add it:
+[Italian Checkers](https://en.wikipedia.org/wiki/Italian_draughts)
 
-- Create a new project on `gitlab.com/{group}/project_name`
-- Then populate it:
+![image](https://user-images.githubusercontent.com/35597877/136212005-ab4aa3db-b8d7-4b24-a508-36a943daf609.png)
 
-```bash
-##   e.g. if group is "{group}" and project_name is "project_name"
-git remote add origin git@github.com:{group}/project_name.git
-git push -u origin master
-git push -u origin --tags
-```
 
-Functionnal test with a script:
 
-```bash
-cd
-mkdir tmp
-cd tmp
-project_name-run
-```
 
-# Install
 
-Go to `https://github.com/{group}/project_name` to see the project, manage issues,
-setup you ssh public key, ...
+Italian Dama is a board game, unlike the other checkers variant (English, International) there isn't an AI capable of playing at super-human level. 
 
-Create a python3 virtualenv and activate it:
-
-```bash
-sudo apt-get install virtualenv python-pip python-dev
-deactivate; virtualenv -ppython3 ~/venv ; source ~/venv/bin/activate
-```
-
-Clone the project and install it:
-
-```bash
-git clone git@github.com:{group}/project_name.git
-cd project_name
-pip install -r requirements.txt
-make clean install test                # install and test
-```
-Functionnal test with a script:
-
-```bash
-cd
-mkdir tmp
-cd tmp
-project_name-run
-```
-# checkers
