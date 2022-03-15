@@ -1,7 +1,11 @@
 # Checkers 
-<img src="https://user-images.githubusercontent.com/35597877/137335322-f02f5183-8892-4cd3-837d-de44bc853828.png" width="150">
 
 Checker (or Draughts) is a worldwide two players board game. Usually played on the same board as chess, the objective of each player is to capture, i.e. eat, all opponent's pieces. Initially, each player has 12 pawns that can only move forward and diagonally - the game is played only on one colour of the board, typically on the black squares - and can eat by jumping over the opponent's piece. Once a pawn reaches the last row of the board this is promoted into a Queen (or King), a more powerful piece that can also move backwards. 
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/35597877/137335322-f02f5183-8892-4cd3-837d-de44bc853828.png" width="150">
+</p>
+
 
 # Checkers and AI
 Unlike chess, checker is played differently around the world depending on each region. In the US and UK the prevalent version is the English variant. Other popular variants are the International, played mostly in Northern Europe, and the Italian variant played in Italy and Northern Africa. Given the variety of different versions in checkers, there aren't necessarily AI systems that can play each of these variants. As a matter of fact, the English version is the one that has received most attentions and surprinsignly for some checker's variants it is seemingly hard to find a computer program that is able to play well. 
